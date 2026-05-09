@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Kid Taps — Tablet UI / UX (Print)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tablet.css" />
+<style>
+  html, body { margin: 0; padding: 0; background: #f0eee9; font-family: 'Space Grotesk', system-ui, sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .page {
+    width: 1308px;
+    height: 828px;
+    margin: 24px auto;
+    background: #f0eee9;
+    position: relative;
+    page-break-after: always;
+    break-after: page;
+    break-inside: avoid;
+    display: flex;
+    flex-direction: column;
+  }
+  .page-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #1A1A2E;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 4px;
+    opacity: 0.7;
+  }
+  .frame-wrap {
+    flex: 1;
+    min-height: 0;
+  }
+  .tablet-frame {
+    width: 100%; height: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #1A1A2E;
+    border: 14px solid #1A1A2E;
+    box-sizing: border-box;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+    position: relative;
+  }
+  .tablet-frame .cam {
+    position: absolute;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #555;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+  }
+  .tablet-inner {
+    width: 100%; height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #FFF8EC;
+  }
+
+  @page {
+    size: 1380px 900px;
+    margin: 0;
+  }
+  @media print {
+    html, body { background: #ffffff; }
+    .page {
+      margin: 0;
+      width: 1380px;
+      height: 900px;
+      padding: 24px 36px;
+      box-sizing: border-box;
+      page-break-after: always;
+      break-after: page;
+    }
+    .page:last-child { page-break-after: auto; break-after: auto; }
+    .page-label { padding: 0 0 10px; }
+    /* Disable all animations for print stability */
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="tablet.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+function Tablet({ children }) {
+  return (
+    <div className="tablet-frame">
+      <div className="tablet-inner">{children}</div>
+      <div className="cam"></div>
+    </div>
+  );
+}
+
+function Page({ label, children }) {
+  return (
+    <div className="page">
+      <div className="page-label">{label}</div>
+      <div className="frame-wrap">
+        <Tablet>{children}</Tablet>
+      </div>
+    </div>
+  );
+}
+
+function PrintApp() {
+  return (
+    <div>
+      <Page label="01 · Home"><THome /></Page>
+      <Page label="02 · Teacher Setup"><TSetup /></Page>
+      <Page label="03 · Countdown"><TCountdown /></Page>
+      <Page label="04 · Game (active)"><TGame /></Page>
+      <Page label="05 · Game (paused overlay)"><TGame paused /></Page>
+      <Page label="06 · Result"><TResult /></Page>
+      <Page label="07 · Parent Settings"><TSettings /></Page>
+      <Page label="08 · Language Loading (animated)"><TLangLoad /></Page>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<PrintApp />);
+
+// Auto-print: wait for fonts + babel + a small grace period
+(async () => {
+  try {
+    if (document.fonts && document.fonts.ready) {
+      await document.fonts.ready;
+    }
+  } catch (e) {}
+  await new Promise(r => setTimeout(r, 700));
+  window.print();
+})();
+</script>
+</body>
+</html>

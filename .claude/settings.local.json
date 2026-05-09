@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(gunzip -c \"334f11da-12d0-4918-85b6-ba85deba0ea9\\\\tool-results\\\\webfetch-1778333584141-8uxgyb.bin\")"
+    ]
+  }
+}
