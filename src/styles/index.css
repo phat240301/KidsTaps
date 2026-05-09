@@ -4,6 +4,9 @@
 @import url('./screens/setup.css');
 @import url('./screens/countdown.css');
 @import url('./screens/game.css');
+@import url('./screens/result.css');
+@import url('./screens/settings.css');
+@import url('./screens/language.css');
 
 :root {
   --red: #FF3B3B;

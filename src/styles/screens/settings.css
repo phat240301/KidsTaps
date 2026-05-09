@@ -1,0 +1,127 @@
+/* src/styles/screens/settings.css */
+
+.s-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.s-card {
+  border-radius: 28px;
+  border: 3px solid var(--ink);
+  background: var(--cream);
+  box-shadow: 0 6px 0 var(--ink);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.s-card .h {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.s-card .h h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.gate-card {
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 28px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.gate-card .lock {
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
+  background: var(--yellow);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  border: 3px solid var(--cream);
+}
+
+.gate-card .t .h {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.gate-card .t .d {
+  font-family: 'Space Grotesk';
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.gate-card .ring {
+  margin-left: auto;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: conic-gradient(var(--green) 0 65%, rgba(255,255,255,0.15) 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.gate-card .ring::after {
+  content: '';
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.set-list .row {
+  padding: 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1.5px dashed rgba(26,26,46,0.18);
+}
+
+.set-list .row:first-child {
+  border-top: none;
+  padding-top: 4px;
+}
+
+.set-list .row .n {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.set-list .row .d {
+  font-family: 'Space Grotesk';
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 2px;
+}
+
+.danger-btn {
+  height: 52px;
+  border-radius: 16px;
+  background: var(--cream);
+  border: 2.5px dashed var(--red);
+  color: var(--red);
+  font-family: 'Fredoka';
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
