@@ -1,6 +1,9 @@
 /* src/styles/index.css */
 @import url('./components.css');
 @import url('./screens/home.css');
+@import url('./screens/setup.css');
+@import url('./screens/countdown.css');
+@import url('./screens/game.css');
 
 :root {
   --red: #FF3B3B;
