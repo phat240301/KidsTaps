@@ -8,7 +8,7 @@ import { DIFFICULTY_PRESETS } from '../../utils/constants'
 import { useGame } from '../../context/GameContext'
 
 export function Setup({ navigateTo }) {
-  const { setConfig } = useGame()
+  const { config, setConfig } = useGame()
   const [age, setAge] = useState(7)
   const [spawnSpeed, setSpawnSpeed] = useState(3.4)
   const [holdTime, setHoldTime] = useState(3.9)
@@ -99,7 +99,7 @@ export function Setup({ navigateTo }) {
           </div>
           <div className="set-card">
             <div>
-              <div className="ttl">Mode · Shapes</div>
+              <div className="ttl">Mode · {config.mode === 'animals' ? 'Animals' : 'Shapes'}</div>
               <h3>Preview & comfort</h3>
             </div>
             <div className="preview-box">
