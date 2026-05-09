@@ -65,16 +65,22 @@
   opacity: 0.7;
 }
 
+.gate-card {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 .gate-card .ring {
   margin-left: auto;
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: conic-gradient(var(--green) 0 65%, rgba(255,255,255,0.15) 0);
+  background: conic-gradient(var(--green) 0 var(--hold-progress, 0%), rgba(255,255,255,0.15) 0);
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .gate-card .ring::after {
