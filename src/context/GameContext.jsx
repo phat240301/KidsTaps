@@ -36,5 +36,7 @@ export function GameProvider({ children }) {
 }
 
 export function useGame() {
-  return useContext(GameContext)
+  const context = useContext(GameContext)
+  if (!context) throw new Error('useGame must be used within GameProvider')
+  return context
 }
