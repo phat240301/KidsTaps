@@ -14,6 +14,9 @@ export function Game({ navigateTo }) {
   const [tapCount, setTapCount] = useState(0)
   const [missCount, setMissCount] = useState(0)
   const gameOverRef = useRef(false)
+  const tapCountRef = useRef(0)
+  const missCountRef = useRef(0)
+  const maxStreakRef = useRef(0)
 
   // Countdown timer
   useEffect(() => {
@@ -27,9 +30,9 @@ export function Game({ navigateTo }) {
     if (gameOverRef.current) return
     if (time <= 0 || score >= config.targetScore) {
       gameOverRef.current = true
-      const totalAttempts = tapCount + missCount
+      const totalAttempts = tapCountRef.current + missCountRef.current
       const accuracy = totalAttempts > 0
-        ? Math.round((tapCount / totalAttempts) * 100)
+        ? Math.round((tapCountRef.current / totalAttempts) * 100)
         : 100
       const stars = score >= config.targetScore
         ? (time > 30 ? 3 : 2)
@@ -38,7 +41,7 @@ export function Game({ navigateTo }) {
         finalScore: score,
         targetScore: config.targetScore,
         timeLeft: Math.max(time, 0),
-        streak: maxStreak,
+        streak: maxStreakRef.current,
         accuracy,
         stars,
       })
@@ -64,6 +67,7 @@ export function Game({ navigateTo }) {
         setItems(prev => {
           const stillThere = prev.some(it => it.id === id)
           if (stillThere) {
+            missCountRef.current += 1
             setMissCount(m => m + 1)
             setCurrentStreak(0)
           }
@@ -77,10 +81,15 @@ export function Game({ navigateTo }) {
   const handleItemTap = (id) => {
     setItems(prev => prev.filter(it => it.id !== id))
     setScore(prev => prev + 1)
+    tapCountRef.current += 1
     setTapCount(t => t + 1)
     setCurrentStreak(s => {
       const next = s + 1
-      setMaxStreak(m => Math.max(m, next))
+      setMaxStreak(m => {
+        const newMax = Math.max(m, next)
+        maxStreakRef.current = newMax
+        return newMax
+      })
       return next
     })
   }
