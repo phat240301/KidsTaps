@@ -1,5 +1,6 @@
 /* src/styles/index.css */
 @import url('./components.css');
+@import url('./screens/home.css');
 
 :root {
   --red: #FF3B3B;
