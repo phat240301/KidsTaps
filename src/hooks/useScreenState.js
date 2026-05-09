@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 export function useScreenState() {
-  const [currentScreen, setCurrentScreen] = useState('home')
+  const [currentScreen, setCurrentScreen] = useState('splash')
 
   return {
     currentScreen,

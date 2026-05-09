@@ -1,4 +1,5 @@
 import { useScreenState } from './hooks/useScreenState'
+import { Splash } from './components/screens/Splash'
 import { Home } from './components/screens/Home'
 import { Setup } from './components/screens/Setup'
 import { Countdown } from './components/screens/Countdown'
@@ -21,6 +22,8 @@ export default function App() {
 
   const renderScreen = () => {
     switch (screen.currentScreen) {
+      case 'splash':
+        return <Splash onComplete={() => screen.navigateTo('home')} />
       case 'home':
         return <Home />
       case 'setup':

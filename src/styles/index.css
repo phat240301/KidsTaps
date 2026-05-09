@@ -7,6 +7,7 @@
 @import url('./screens/result.css');
 @import url('./screens/settings.css');
 @import url('./screens/language.css');
+@import url('./screens/splash.css');
 
 :root {
   --red: #FF3B3B;
