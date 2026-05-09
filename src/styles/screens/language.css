@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  perspective: 1000px;
 }
 
 .lang .orbit {
@@ -47,8 +48,8 @@
   justify-content: center;
   font-size: 100px;
   animation: flipCard 1.6s ease-in-out infinite;
-  perspective: 600px;
   position: relative;
+  transform-style: preserve-3d;
 }
 
 .lang .flag-card .face {
