@@ -1,10 +1,10 @@
 // src/components/screens/Home.jsx
 import { Sidebar } from '../Sidebar'
 
-export function Home() {
+export function Home({ navigateTo }) {
   return (
     <div className="tab-screen">
-      <Sidebar active="home" />
+      <Sidebar active="home" navigateTo={navigateTo} />
       <div className="tab-content">
         <div className="top">
           <div>

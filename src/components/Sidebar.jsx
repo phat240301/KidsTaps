@@ -1,20 +1,22 @@
 // src/components/Sidebar.jsx
-import { useState } from 'react'
+import { useGame } from '../context/GameContext'
 
-export function Sidebar({ active = 'home', onLanguageChange }) {
-  const [lang, setLang] = useState('EN')
+export function Sidebar({ active = 'home', navigateTo }) {
+  const { lang, setLang } = useGame()
 
   const items = [
-    { id: 'home',     ic: '🏠', label: 'Home' },
-    { id: 'play',     ic: '▶',  label: 'Play' },
-    { id: 'scores',   ic: '⭐', label: 'High Scores' },
-    { id: 'settings', ic: '⚙',  label: 'Settings' },
-    { id: 'about',    ic: '?',  label: 'About' },
+    { id: 'home',     ic: '🏠', label: 'Home',        screen: 'home' },
+    { id: 'play',     ic: '▶',  label: 'Play',         screen: 'setup' },
+    { id: 'scores',   ic: '⭐', label: 'High Scores',  screen: 'home' },
+    { id: 'settings', ic: '⚙',  label: 'Settings',     screen: 'settings' },
+    { id: 'about',    ic: '?',  label: 'About',         screen: 'home' },
   ]
 
   const handleLanguageChange = (newLang) => {
-    setLang(newLang)
-    onLanguageChange?.(newLang)
+    if (newLang !== lang) {
+      setLang(newLang)
+      navigateTo('language_loading')
+    }
   }
 
   return (
@@ -27,7 +29,12 @@ export function Sidebar({ active = 'home', onLanguageChange }) {
         </div>
       </div>
       {items.map(i => (
-        <div className={`nav-item ${active === i.id ? 'on' : ''}`} key={i.id}>
+        <div
+          className={`nav-item ${active === i.id ? 'on' : ''}`}
+          key={i.id}
+          onClick={() => navigateTo(i.screen)}
+          style={{ cursor: 'pointer' }}
+        >
           <span className="ic">{i.ic}</span>
           <span>{i.label}</span>
         </div>

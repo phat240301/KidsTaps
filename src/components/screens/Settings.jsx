@@ -4,7 +4,7 @@ import { Sidebar } from '../Sidebar'
 import { Slider } from '../shared/Slider'
 import { Switch } from '../shared/Switch'
 
-export function Settings() {
+export function Settings({ navigateTo }) {
   const [musicVol, setMusicVol] = useState(60)
   const [sfxVol, setSfxVol] = useState(80)
   const [calmMode, setCalmMode] = useState(true)
@@ -16,7 +16,7 @@ export function Settings() {
 
   return (
     <div className="tab-screen">
-      <Sidebar active="settings" />
+      <Sidebar active="settings" navigateTo={navigateTo} />
       <div className="tab-content">
         <div className="top">
           <div>

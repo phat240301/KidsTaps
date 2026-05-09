@@ -6,7 +6,7 @@ import { Switch } from '../shared/Switch'
 import { Button } from '../shared/Button'
 import { DIFFICULTY_PRESETS } from '../../utils/constants'
 
-export function Setup() {
+export function Setup({ navigateTo }) {
   const [age, setAge] = useState(7)
   const [spawnSpeed, setSpawnSpeed] = useState(3.4)
   const [holdTime, setHoldTime] = useState(3.9)
@@ -25,7 +25,7 @@ export function Setup() {
 
   return (
     <div className="tab-screen">
-      <Sidebar active="play" />
+      <Sidebar active="play" navigateTo={navigateTo} />
       <div className="tab-content">
         <div className="top">
           <div>
