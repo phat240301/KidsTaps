@@ -25,21 +25,21 @@ export default function App() {
       case 'splash':
         return <Splash onComplete={() => screen.navigateTo('home')} />
       case 'home':
-        return <Home />
+        return <Home navigateTo={screen.navigateTo} />
       case 'setup':
-        return <Setup />
+        return <Setup navigateTo={screen.navigateTo} />
       case 'countdown':
-        return <Countdown />
+        return <Countdown navigateTo={screen.navigateTo} />
       case 'game':
-        return <Game />
+        return <Game navigateTo={screen.navigateTo} />
       case 'result':
-        return <Result />
+        return <Result navigateTo={screen.navigateTo} />
       case 'settings':
-        return <Settings />
+        return <Settings navigateTo={screen.navigateTo} />
       case 'language_loading':
-        return <LanguageLoading />
+        return <LanguageLoading navigateTo={screen.navigateTo} />
       default:
-        return <Home />
+        return <Home navigateTo={screen.navigateTo} />
     }
   }
 
