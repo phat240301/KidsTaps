@@ -9,7 +9,7 @@ export function LanguageLoading({ navigateTo }) {
       .then(res => res.json())
       .then(data => setAnimationData(data))
       .catch(() => navigateTo('home'))
-  }, []);
+  }, [navigateTo]);
 
   useEffect(() => {
     // Animation is 96 frames at 60fps = 1.6s. Navigate after 2 full loops (~3.2s).
