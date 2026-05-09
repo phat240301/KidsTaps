@@ -1,7 +1,15 @@
 // src/components/screens/Home.jsx
 import { Sidebar } from '../Sidebar'
+import { useGame } from '../../context/GameContext'
 
 export function Home({ navigateTo }) {
+  const { setConfig } = useGame()
+
+  const handleModeSelect = (mode) => {
+    setConfig(prev => ({ ...prev, mode }))
+    navigateTo('setup')
+  }
+
   return (
     <div className="tab-screen">
       <Sidebar active="home" navigateTo={navigateTo} />
@@ -13,11 +21,19 @@ export function Home({ navigateTo }) {
           </div>
           <div className="actions">
             <div className="tab-pill">🔥 Streak · 3 days</div>
-            <div className="tab-pill dark">▶ Quick play</div>
+            <div
+              className="tab-pill dark"
+              onClick={() => navigateTo('countdown')}
+              style={{ cursor: 'pointer' }}
+            >▶ Quick play</div>
           </div>
         </div>
         <div className="h-grid">
-          <div className="h-mode shapes">
+          <div
+            className="h-mode shapes"
+            onClick={() => handleModeSelect('shapes')}
+            style={{ cursor: 'pointer' }}
+          >
             <div className="tag">Mode 01</div>
             <h2>Shapes</h2>
             <div className="desc">Tap circles, squares, stars and hearts as they appear. Great for early shape recognition.</div>
@@ -29,7 +45,11 @@ export function Home({ navigateTo }) {
             <div className="glyph">🔶</div>
           </div>
           <div className="h-side">
-            <div className="h-mode animals" style={{ flex: 1 }}>
+            <div
+              className="h-mode animals"
+              style={{ flex: 1, cursor: 'pointer' }}
+              onClick={() => handleModeSelect('animals')}
+            >
               <div className="tag">Mode 02</div>
               <h2 style={{ fontSize: 44 }}>Animals</h2>
               <div className="desc">Tap the animals as they appear. Each tap names the animal aloud.</div>
