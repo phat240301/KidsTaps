@@ -3,6 +3,7 @@ import { useGame } from '../../context/GameContext'
 
 export function Result({ navigateTo }) {
   const { results } = useGame()
+  if (!results) return null
   const { finalScore, targetScore, timeLeft, streak, accuracy, stars } = results
 
   const timeUsed = 120 - timeLeft

@@ -42,7 +42,8 @@ export function Game({ navigateTo }) {
         accuracy,
         stars,
       })
-      setTimeout(() => navigateTo('result'), 800)
+      const t = setTimeout(() => navigateTo('result'), 800)
+      return () => clearTimeout(t)
     }
   }, [time, score])
 
