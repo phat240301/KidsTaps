@@ -1,4 +1,6 @@
 /* src/styles/index.css */
+@import url('./components.css');
+
 :root {
   --red: #FF3B3B;
   --yellow: #FFD23F;
