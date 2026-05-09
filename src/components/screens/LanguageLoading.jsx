@@ -1,14 +1,21 @@
 import { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
 
-export function LanguageLoading() {
+export function LanguageLoading({ navigateTo }) {
   const [animationData, setAnimationData] = useState(null);
 
   useEffect(() => {
     fetch('/switching_language.json')
       .then(res => res.json())
-      .then(data => setAnimationData(data));
+      .then(data => setAnimationData(data))
+      .catch(() => navigateTo('home'))
   }, []);
+
+  useEffect(() => {
+    // Animation is 96 frames at 60fps = 1.6s. Navigate after 2 full loops (~3.2s).
+    const timer = setTimeout(() => navigateTo('home'), 3200)
+    return () => clearTimeout(timer)
+  }, [navigateTo])
 
   if (!animationData) return null;
 
