@@ -5,8 +5,10 @@ import { Slider } from '../shared/Slider'
 import { Switch } from '../shared/Switch'
 import { Button } from '../shared/Button'
 import { DIFFICULTY_PRESETS } from '../../utils/constants'
+import { useGame } from '../../context/GameContext'
 
 export function Setup({ navigateTo }) {
+  const { setConfig } = useGame()
   const [age, setAge] = useState(7)
   const [spawnSpeed, setSpawnSpeed] = useState(3.4)
   const [holdTime, setHoldTime] = useState(3.9)
@@ -23,6 +25,20 @@ export function Setup({ navigateTo }) {
     setTargetScore(preset.targetScore)
   }
 
+  const handleStart = () => {
+    setConfig(prev => ({
+      ...prev,
+      spawnSpeed,
+      holdTime,
+      targetScore,
+      music,
+      calmMode,
+      voicePrompts,
+      haptics,
+    }))
+    navigateTo('countdown')
+  }
+
   return (
     <div className="tab-screen">
       <Sidebar active="play" navigateTo={navigateTo} />
@@ -33,8 +49,12 @@ export function Setup({ navigateTo }) {
             <h1>Set up the round</h1>
           </div>
           <div className="actions">
-            <div className="tab-pill">← Back</div>
-            <Button variant="blue" style={{ height: 52, fontSize: 18 }}>✓ Start game</Button>
+            <div
+              className="tab-pill"
+              onClick={() => navigateTo('home')}
+              style={{ cursor: 'pointer' }}
+            >← Back</div>
+            <Button variant="blue" style={{ height: 52, fontSize: 18 }} onClick={handleStart}>✓ Start game</Button>
           </div>
         </div>
         <div className="set-grid">
@@ -55,9 +75,27 @@ export function Setup({ navigateTo }) {
               </div>
             </div>
             <div className="auto-btn" onClick={handleAutoSuggest}>✦ Auto-suggest difficulty</div>
-            <Slider name="Spawn speed" value={spawnSpeed.toFixed(1)} hint="How often a new item appears" />
-            <Slider name="Hold time" value={holdTime.toFixed(1)} hint="How long an item stays visible" />
-            <Slider name="Target score" value={Math.round(targetScore)} hint="Round ends when reached" />
+            <Slider
+              name="Spawn speed"
+              value={spawnSpeed}
+              min={1.0} max={8.0} step={0.1}
+              hint="How often a new item appears (seconds)"
+              onChange={setSpawnSpeed}
+            />
+            <Slider
+              name="Hold time"
+              value={holdTime}
+              min={1.0} max={8.0} step={0.1}
+              hint="How long an item stays visible (seconds)"
+              onChange={setHoldTime}
+            />
+            <Slider
+              name="Target score"
+              value={targetScore}
+              min={5} max={30} step={1}
+              hint="Round ends when reached"
+              onChange={(v) => setTargetScore(Math.round(v))}
+            />
           </div>
           <div className="set-card">
             <div>
