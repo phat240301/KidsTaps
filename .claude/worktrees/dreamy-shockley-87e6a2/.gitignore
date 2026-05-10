@@ -1,0 +1,56 @@
+# Gradle
+.gradle/
+build/
+*.apk
+*.aab
+
+# Android Studio / IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Local configuration
+local.properties
+*.jks
+*.keystore
+
+# Node/npm
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Generated files
+*.class
+*.jar
+*.war
+
+# Vite
+.vite/
+dist/
+
+# Logs
+*.log
+
+# IDE temp files
+*.sublime-workspace
+.vscode/
+.history/
+
+# Misc
+*.bak
+*.tmp
