@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Android 12+ backup configuration -->
-<backup-rules>
-    <!-- Backup all app data (100% offline app, no sensitive data) -->
-    <include domain="file" path="." />
-    <include domain="database" path="." />
-    <include domain="sharedpref" path="." />
-</backup-rules>
