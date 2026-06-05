@@ -1,0 +1,98 @@
+/* src/styles/screens/countdown.css */
+
+.cd {
+  background: var(--blue);
+  position: relative;
+}
+
+.cd .ring-bg {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 8px dashed rgba(255,255,255,0.18);
+  border-radius: 50%;
+  animation: rotateOrbit 8s linear infinite;
+}
+
+.cd .ring-bg.r2 {
+  width: 760px;
+  height: 760px;
+  border-width: 4px;
+  border-color: rgba(255,255,255,0.1);
+  animation: rotateOrbit 6s linear infinite reverse;
+}
+
+.cd .center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.cd .ready {
+  font-family: 'Space Grotesk';
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.85;
+}
+
+.cd .num {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: var(--yellow);
+  border: 8px solid var(--ink);
+  box-shadow: 0 14px 0 rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 240px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.cd .dots {
+  display: flex;
+  gap: 16px;
+}
+
+.cd .dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--cream);
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.cd .dot.on {
+  opacity: 1;
+}
+
+.cd .quit-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.12);
+  border: 2px solid var(--cream);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+}
