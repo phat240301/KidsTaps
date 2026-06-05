@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# KidsTaps
-=======
 # 🎮 KidsTap — Android Game for Children with Developmental Delay
 
 Complete Kotlin + Jetpack Compose implementation of an accessible tap game for special needs children.
@@ -377,4 +374,3 @@ For questions about this implementation, refer to the **Implementation Plan** do
 
 **Last Updated:** 2025-04-26  
 **Version:** 1.0.0 (Sprint 1-2 complete)
->>>>>>> claude/dreamy-shockley-87e6a2
